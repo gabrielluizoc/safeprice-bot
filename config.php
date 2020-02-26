@@ -5,7 +5,8 @@ namespace Config;
 class Telegram {
     private $baseUrl;
     private $token;
-    private $chatId;    
+    private $chatId;
+    public $jsonFileConfig;
 
     public function setBaseUrl($baseUrl){
         $this->baseUrl = $baseUrl;
@@ -29,5 +30,14 @@ class Telegram {
 
     public function getChatId(){
         return $this->chatId;
-    }    
+    }
+
+    public function configByJson($file){
+        $this->jsonFileConfig = json_decode($file);
+        foreach($this->jsonFileConfig as $value):
+            $this->baseUrl = $value->BASE_URL;
+            $this->token = $value->TOKEN;
+            $this->chatId = $value->CHAT_ID;
+        endforeach;
+    }
 }
