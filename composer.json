@@ -1,0 +1,16 @@
+{
+    "name": "pinguilinuxbr_bot/composer-php",
+    "description": "PinguiLinuxBr Bot Composer",
+    "authors": [
+        {
+            "name": "Gabriel Luiz",
+            "email": "gabrielluizoc@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Source\\": "src/"
+        }
+    },
+    "require": {}
+}
