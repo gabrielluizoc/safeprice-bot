@@ -6,6 +6,7 @@ class Telegram {
     private $baseUrl;
     private $token;
     private $chatId;
+    private $urlToken;
     public $jsonFileConfig;
 
     public function setBaseUrl($baseUrl){
@@ -32,12 +33,23 @@ class Telegram {
         return $this->chatId;
     }
 
+    public function setUrlToken($baseUrl, $token){
+        $this->urlToken = $baseUrl.$token;
+    }
+
+    public function getUrlToken(){
+        return $this->urlToken;
+    }
+
     public function configByJson($file){
         $this->jsonFileConfig = json_decode($file);
         foreach($this->jsonFileConfig as $value):
             $this->baseUrl = $value->BASE_URL;
             $this->token = $value->TOKEN;
             $this->chatId = $value->CHAT_ID;
+            $this->setUrlToken($this->baseUrl, $this->token);
         endforeach;
+
+        return $this->getUrlToken();
     }
 }
