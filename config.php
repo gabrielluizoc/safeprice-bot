@@ -12,6 +12,9 @@ class Telegram extends User{
     private $chatId;
     private $urlToken;
     public $jsonFileConfig;
+    public $getUpdate;    
+    
+    public $messageBot;
 
     public function setBaseUrl($baseUrl){
         $this->baseUrl = $baseUrl;
@@ -43,7 +46,7 @@ class Telegram extends User{
 
     public function getUrlToken(){
         return $this->urlToken;
-    }
+    }   
 
     public function configByJson($file){
         $this->jsonFileConfig = json_decode($file);
@@ -55,5 +58,20 @@ class Telegram extends User{
         endforeach;
 
         return $this->getUrlToken();
+    }
+
+    public function getUpdates(){
+        $this->getUpdate = file_get_contents('php://input');
+        $this->getUpdate = json_decode($this->getUpdate, TRUE);
+        return $this->getUpdate;        
+    }
+
+    public function getUserData(){
+        $this->getUpdates();
+
+        $this->setUserId($this->getUpdate['message']['from']['id']);
+        $this->setFirstName($this->getUpdate['message']['from']['first_name']);
+        $this->setUsername($this->getUpdate['message']['from']['username']);
+        $this->setText($this->getUpdate['message']['text']);
     }
 }
