@@ -2,7 +2,11 @@
 
 namespace Config;
 
-class Telegram {
+use User;
+
+include './src/Model/User.php';
+
+class Telegram extends User{
     private $baseUrl;
     private $token;
     private $chatId;
