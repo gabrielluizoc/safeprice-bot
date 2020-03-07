@@ -74,4 +74,11 @@ class Telegram extends User{
         $this->setUsername($this->getUpdate['message']['from']['username']);
         $this->setText($this->getUpdate['message']['text']);
     }
+
+    public function sendMessage($text) {        
+        $this->setText($text);        
+    
+        $url = $this->getUrlToken()."/sendMessage?chat_id=-".$this->getChatId()."&parse_mode=HTML&text=".urlencode($this->getText());
+        file_get_contents($url);
+    }
 }
