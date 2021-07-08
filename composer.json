@@ -1,6 +1,6 @@
 {
-    "name": "pinguilinuxbr_bot/composer-php",
-    "description": "PinguiLinuxBr Bot Composer",
+    "name": "safeprice_bot/composer-php",
+    "description": "SafePrice Bot Composer",
     "authors": [
         {
             "name": "Gabriel Luiz",
