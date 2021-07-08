@@ -6,7 +6,7 @@ include './config.php';
 
 $config = new \Config\Telegram();
 
-$file = file_get_contents('./env-example.json');
+$file = file_get_contents('./env.json');
 
 $config->configByJson($file);
 
@@ -16,4 +16,11 @@ $chatId = $config->getChatId();
 
 $urlToken = $config->getUrlToken();
 
-$config->sendMessage(json_encode($config->getUpdates(), JSON_PRETTY_PRINT));
+if($config->getText() == '/price'){
+    $res = shell_exec('python3 ./crawler/safemoon.py');
+    $config->sendMessage($res);
+}
+
+
+
+
